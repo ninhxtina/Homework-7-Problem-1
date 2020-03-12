@@ -58,11 +58,22 @@ public class ArrayDictionary implements Dictionary {
     @Override
     public boolean remove(int key) {
         // homework
-        int hashedKey = hashFunction(key);
+        if(contains(key)) {
+            for(int i = 0; i < entries.length;i++) {
+                KVEntry prev = null;
+                KVEntry curr = entries[i];
 
-        if(entries[hashedKey] == null) {
-            if (count == capacity) {
-                return false;
+                while(curr != null) {
+                    if(curr.key == key) {
+                        //deletes first node
+                        if(prev == null) {
+                            entries[i] = curr.next;
+                        }
+                        return true;
+                    }
+                    prev = curr;
+                    curr = curr.next;
+                }
             }
         }
         return false;
@@ -73,7 +84,16 @@ public class ArrayDictionary implements Dictionary {
     @Override
     public boolean contains(int key) {
         // homework
-        int hashedKey = hashFunction(key);
+        for(int j = 0; j < entries.length; j++) {
+            KVEntry curr = entries[j];
+
+            while(curr != null) {
+                if(curr.key == key) {
+                    return true;
+                }
+                curr = curr.next;
+            }
+        }
         return false;
     }
 
