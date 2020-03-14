@@ -43,6 +43,44 @@ public class ArrayDictionaryTest {
     @Test
     public void contains() {
         // homework
-        assertTrue(false);  // place holder
+        ArrayDictionary empty = new ArrayDictionary(0);
+        ArrayDictionary t = new ArrayDictionary(1);
+        ArrayDictionary t2 = new ArrayDictionary(2);
+        ArrayDictionary t3 = new ArrayDictionary(3);
+        ArrayDictionary t4 = new ArrayDictionary(4);
+
+        //empty dictionary
+        assertFalse(empty.contains(-1));
+        assertFalse(empty.contains(0));
+        assertFalse(empty.contains(1));
+
+        //test 1
+        t.add(0,103);
+        assertFalse(t.contains(2));
+        assertTrue(t.contains(0));
+
+        //test 2
+        t2.add(0,103);
+        t2.add(1,105);
+        assertTrue(t2.contains(0));
+        assertTrue(t2.contains(1));
+        assertFalse(t2.contains(2));
+
+        //test 3
+        t3.add(0,103);
+        t3.add(1,105);
+        assertFalse(t3.contains(3));
+        t3.add(2,206);
+        assertTrue(t3.contains(1));
+
+        //test 4
+        t4.add(0,103);
+        t4.add(1,105);
+        t4.add(2,206);
+        t4.add(4,407);
+        assertTrue(t4.contains(1));
+        assertTrue(t4.contains(4));
+        assertFalse(t4.contains(7));
+        assertFalse(t4.contains(8));
     }
 }
